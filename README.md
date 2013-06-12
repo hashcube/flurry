@@ -21,7 +21,8 @@ Under the Android section, you can configure the Flurry plugin:
 			"72": "resources/icons/android72.png",
 			"96": "resources/icons/android96.png"
 		},
-		"flurryKey": "MUmm2eD3qdBSPlcLb3qz"
+		"flurryKey": "MUmm2eD3qdBSPlcLb3qz",
+		"flurryKeyStaging": "NUmm2eD3qdBSPlcLb3qx"
 	}
 ~~~
 
