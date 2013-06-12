@@ -3,6 +3,7 @@ package com.tealeaf.plugin.plugins;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+import com.tealeaf.logger;
 import com.tealeaf.TeaLeaf;
 import com.flurry.android.FlurryAgent;
 import com.tealeaf.plugin.IPlugin;
@@ -65,9 +66,10 @@ public class FlurryPlugin implements IPlugin {
     }
 
     public void logEvent(String json) {
+        String eventName = "noName";
         try {
             JSONObject obj = new JSONObject(json);
-            String eventName = obj.getString("eventName");
+            eventName = obj.getString("eventName");
             Map<String, String> params = new HashMap<String, String>();
             JSONObject paramsObj = obj.getJSONObject("params");
             Iterator<String> iter = paramsObj.keys();
@@ -77,21 +79,20 @@ public class FlurryPlugin implements IPlugin {
                 try {
                     value = paramsObj.getString(key);
                 } catch (JSONException e) {
-                    // Something went wrong!
+                    logger.log("{flurry} {android} logEvent - failure: " + eventName + " - " + e.getMessage());
                 }
 
                 if (value != null) {
                     params.put(key, value);
                 }
             }
-
             FlurryAgent.logEvent(eventName, params);
-               
+            logger.log("{flurry} {android} logEvent - success: " + eventName);
         } catch (JSONException e) {
-        } 
+            logger.log("{flurry} {android} logEvent - failure: " + eventName + " - " + e.getMessage());
+        }
     }
 
- 
     public void onPause() {
 
     }
