@@ -1,0 +1,12 @@
+{
+    "copyFiles": [
+        "FlurryPlugin.java"
+    ],
+    "libraries": [
+    ],
+    "jars": [
+        "FlurryAgent.jar"
+    ],
+    "injectionXML": "manifest.xml",
+	"injectionXSL": "manifest.xsl"
+}
