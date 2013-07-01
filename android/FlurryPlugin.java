@@ -117,7 +117,7 @@ public class FlurryPlugin implements IPlugin {
     }
 
     public boolean consumeOnBackPressed() {
-        return false;
+        return true;
     }
 
     public void onBackPressed() {
