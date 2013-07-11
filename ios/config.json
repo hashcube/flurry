@@ -1,6 +1,10 @@
 {
 	"code": [
+		"Flurry.h",
+		"FlurryPlugin.h",
+		"FlurryPlugin.mm"
 	],
 	"frameworks": [
+		"libFlurry_4.2.2.a"
 	]
 }
