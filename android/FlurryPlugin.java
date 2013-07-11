@@ -65,7 +65,7 @@ public class FlurryPlugin implements IPlugin {
         FlurryAgent.onStartSession(activity, flurryKey);
     }
 
-    public void logEvent(String json) {
+    public void track(String json) {
         String eventName = "noName";
         try {
             JSONObject obj = new JSONObject(json);
@@ -79,7 +79,7 @@ public class FlurryPlugin implements IPlugin {
                 try {
                     value = paramsObj.getString(key);
                 } catch (JSONException e) {
-                    logger.log("{flurry} {android} logEvent - failure: " + eventName + " - " + e.getMessage());
+                    logger.log("{flurry} track - failure: " + eventName + " - " + e.getMessage());
                 }
 
                 if (value != null) {
@@ -87,9 +87,9 @@ public class FlurryPlugin implements IPlugin {
                 }
             }
             FlurryAgent.logEvent(eventName, params);
-            logger.log("{flurry} {android} logEvent - success: " + eventName);
+            logger.log("{flurry} track - success: " + eventName);
         } catch (JSONException e) {
-            logger.log("{flurry} {android} logEvent - failure: " + eventName + " - " + e.getMessage());
+            logger.log("{flurry} track - failure: " + eventName + " - " + e.getMessage());
         }
     }
 
@@ -122,5 +122,4 @@ public class FlurryPlugin implements IPlugin {
 
     public void onBackPressed() {
     }
-
 }

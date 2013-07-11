@@ -21,19 +21,19 @@
 - (void) initializeWithManifest:(NSDictionary *)manifest appDelegate:(TeaLeafAppDelegate *)appDelegate {
 	@try {
 		NSDictionary *ios = [manifest valueForKey:@"ios"];
-		NSString *flurryKey = [ios valueForKey:@"FlurryKey"];
+		NSString *flurryKey = [ios valueForKey:@"flurryKey"];
 
 		[Flurry setDebugLogEnabled:YES];
 		[Flurry startSession:flurryKey];
 
-		NSLog(@"{flurry} Initialized with manifest FlurryKey: '%@'", flurryKey);
+		NSLog(@"{flurry} Initialized with manifest flurryKey: '%@'", flurryKey);
 	}
 	@catch (NSException *exception) {
-		NSLog(@"{flurry} Failure to get ios:FlurryKey from manifest file: %@", exception);
+		NSLog(@"{flurry} Failure to get ios:flurryKey from manifest file: %@", exception);
 	}
 }
 
-- (void) logEvent:(NSDictionary *)jsonObject {
+- (void) track:(NSDictionary *)jsonObject {
 	@try {
 		NSString *eventName = [jsonObject valueForKey:@"eventName"];
 		
