@@ -42,13 +42,13 @@ Under the Android/iOS sections, you can configure the Flurry plugin:
 	},
 ~~~
 
-To use Flurry logging in your game, import the flurry object:
+To use Flurry tracking in your game, import the flurry object:
 
 ~~~
 import plugins.flurry.flurry as flurry;
 ~~~
 
-Then send individual logs like this:
+Then send individual track events like this:
 
 ~~~
 flurry.track("myEvent", {
