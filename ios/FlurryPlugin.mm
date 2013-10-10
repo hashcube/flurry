@@ -23,7 +23,7 @@
 		NSDictionary *ios = [manifest valueForKey:@"ios"];
 		NSString *flurryKey = [ios valueForKey:@"flurryKey"];
 
-		[Flurry setDebugLogEnabled:YES];
+		//[Flurry setDebugLogEnabled:YES];
 		[Flurry startSession:flurryKey];
 
 		NSLog(@"{flurry} Initialized with manifest flurryKey: '%@'", flurryKey);

@@ -59,9 +59,9 @@ public class FlurryPlugin implements IPlugin {
             android.util.Log.d("EXCEPTION", "" + e.getMessage());
         }
 
-        FlurryAgent.setLogEnabled(true);
-        FlurryAgent.setLogEvents(true);
-        FlurryAgent.setLogLevel(Log.VERBOSE);
+        //FlurryAgent.setLogEnabled(true);
+        //FlurryAgent.setLogEvents(true);
+        //FlurryAgent.setLogLevel(Log.VERBOSE);
         FlurryAgent.onStartSession(activity, flurryKey);
     }
 
