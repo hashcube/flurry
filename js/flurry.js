@@ -5,6 +5,7 @@ var Flurry = Class(function () {
 		this._globalProperties = {};
 	}
 
+	this.trackEvent =
 	this.track = function (name, data) {
 		// copy in global properties
 		merge(data, this._globalProperties);
@@ -17,6 +18,18 @@ var Flurry = Class(function () {
 			NATIVE.plugins.sendEvent("FlurryPlugin", "track", JSON.stringify({
 					eventName: name,
 					params: data
+				}));
+		}
+	};
+
+	this.setUserId = function (userId) {
+		if (DEBUG) {
+			logger.log("setUserId: ", userId);
+		}
+
+		if (hasNativeEvents) {
+			NATIVE.plugins.sendEvent("FlurryPlugin", "setUser", JSON.stringify({
+					user: userId
 				}));
 		}
 	};

@@ -5,7 +5,6 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import com.tealeaf.logger;
 import com.tealeaf.TeaLeaf;
-import com.flurry.android.FlurryAgent;
 import com.tealeaf.plugin.IPlugin;
 import java.io.*;
 import org.json.JSONArray;
@@ -25,6 +24,8 @@ import android.content.SharedPreferences;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Iterator;
+
+import com.flurry.android.FlurryAgent;
 
 
 public class FlurryPlugin implements IPlugin {
@@ -53,16 +54,34 @@ public class FlurryPlugin implements IPlugin {
         try {
             Bundle meta = manager.getApplicationInfo(activity.getPackageName(), PackageManager.GET_META_DATA).metaData;
             if (meta != null) {
+                boolean debug = meta.getBoolean("WEEBY_DEBUG", true);
+
+                if (debug) {
+					FlurryAgent.setLogEnabled(true);
+					FlurryAgent.setLogEvents(true);
+					FlurryAgent.setLogLevel(Log.VERBOSE);
+				}
+
                 flurryKey = meta.getString("FLURRY_KEY");
             }
         } catch (Exception e) {
             android.util.Log.d("EXCEPTION", "" + e.getMessage());
         }
 
-        //FlurryAgent.setLogEnabled(true);
-        //FlurryAgent.setLogEvents(true);
-        //FlurryAgent.setLogLevel(Log.VERBOSE);
         FlurryAgent.onStartSession(activity, flurryKey);
+    }
+
+    public void setUser(String json) {
+        try {
+            JSONObject obj = new JSONObject(json);
+            String user = obj.getString("user");
+
+			FlurryAgent.setUserId(user);
+
+            logger.log("{flurry} setUser - success: " + user);
+        } catch (JSONException e) {
+            logger.log("{flurry} setUser - failure: " + e.getMessage());
+        }
     }
 
     public void track(String json) {

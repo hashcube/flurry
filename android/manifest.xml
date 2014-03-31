@@ -3,4 +3,5 @@
 <!--START_PLUGINS_APPLICATION-->
 	<!--Flurry-->
 	<meta-data android:name="FLURRY_KEY" android:value="" />
+	<meta-data android:name="WEEBY_DEBUG" android:value="" />
 <!--END_PLUGINS_APPLICATION-->
