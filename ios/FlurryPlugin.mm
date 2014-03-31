@@ -33,6 +33,19 @@
 	}
 }
 
+- (void) setUser:(NSDictionary *)jsonObject {
+	@try {
+		NSString *userId = [jsonObject valueForKey:@"user"];
+
+		[Flurry setUserId:userId];
+
+		NSLOG(@"{flurry} Set user id: %@", userId);
+	}
+	@catch (NSException *exception) {
+		NSLOG(@"{flurry} Exception while processing setUser:", exception);
+	}
+}
+
 - (void) track:(NSDictionary *)jsonObject {
 	@try {
 		NSString *eventName = [jsonObject valueForKey:@"eventName"];
