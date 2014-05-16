@@ -1,5 +1,6 @@
 #import "FlurryPlugin.h"
 #import "Flurry.h"
+#import "platform/log.h"
 
 @implementation FlurryPlugin
 
@@ -26,10 +27,10 @@
 		//[Flurry setDebugLogEnabled:YES];
 		[Flurry startSession:flurryKey];
 
-		NSLog(@"{flurry} Initialized with manifest flurryKey: '%@'", flurryKey);
+		NSLOG(@"{flurry} Initialized with manifest flurryKey: '%@'", flurryKey);
 	}
 	@catch (NSException *exception) {
-		NSLog(@"{flurry} Failure to get ios:flurryKey from manifest file: %@", exception);
+		NSLOG(@"{flurry} Failure to get ios:flurryKey from manifest file: %@", exception);
 	}
 }
 
