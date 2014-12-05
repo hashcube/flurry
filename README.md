@@ -12,17 +12,6 @@ devkit install https://github.com/gameclosure/flurry#v2.0.0
 Create a new app in the Flurry dashboard and add your application key to your
 `manifest.json` file under the `ios` or `android` section as necessary.
 
-
-Install the plugin with `basil install flurry`.
-
-Include it in the `manifest.json` file under the "addons" section for your game:
-
-~~~
-"addons": [
-	"flurry"
-],
-~~~
-
 Under the Android/iOS sections, you can configure the Flurry plugin:
 
 ~~~
