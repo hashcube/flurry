@@ -7,9 +7,9 @@ var Flurry = Class(function () {
 
 	this.trackEvent =
 	this.track = function (name, data) {
-        if (!data) {
-            data = {};
-        }
+		if (!data) {
+			data = {};
+		}
 
 		// copy in global properties
 		merge(data, this._globalProperties);
