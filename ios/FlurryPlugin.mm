@@ -38,7 +38,7 @@
 	@try {
 		NSString *userId = [jsonObject valueForKey:@"user"];
 
-		[Flurry setUserId:userId];
+		[Flurry setUserID:userId];
 
 		NSLOG(@"{flurry} Set user id: %@", userId);
 	}
