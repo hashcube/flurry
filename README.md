@@ -1,6 +1,17 @@
 # Game Closure DevKit Plugin: Flurry
 
-## Usage
+## Installation
+Install the module using the standard devkit install process:
+
+~~~
+devkit install https://github.com/gameclosure/flurry#v2.0.0
+~~~
+
+## Setup
+
+Create a new app in the Flurry dashboard and add your application key to your
+`manifest.json` file under the `ios` or `android` section as necessary.
+
 
 Install the plugin with `basil install flurry`.
 
@@ -15,55 +26,48 @@ Include it in the `manifest.json` file under the "addons" section for your game:
 Under the Android/iOS sections, you can configure the Flurry plugin:
 
 ~~~
-	"android": {
-		"versionCode": 1,
-		"icons": {
-			"36": "resources/icons/android36.png",
-			"48": "resources/icons/android48.png",
-			"72": "resources/icons/android72.png",
-			"96": "resources/icons/android96.png"
-		},
-		"flurryKey": "MUmm2eD3qdBSPlcLb3qz"
-	}
+    "android": {
+        "flurryKey": "MUmm2eD3qdBSPlcLb3qz"
+    }
 ~~~
 
 ~~~
-	"ios": {
-		"bundleID": "mmp",
-		"appleID": "568975017",
-		"version": "1.0.3",
-		"icons": {
-			"57": "resources/images/promo/icon57.png",
-			"72": "resources/images/promo/icon72.png",
-			"114": "resources/images/promo/icon114.png",
-			"144": "resources/images/promo/icon144.png"
-		},
-		"flurryKey": "MUmm2eD3qdBSPlcLb3qz"
-	},
+    "ios": {
+        "flurryKey": "MUmm2eD3qdBSPlcLb3qz"
+    }
 ~~~
 
 To use Flurry tracking in your game, import the flurry object:
 
 ~~~
-import plugins.flurry.flurry as flurry;
+import flurry;
 ~~~
 
 Then send individual track events like this:
 
 ~~~
 flurry.track("myEvent", {
-	"score": 999,
-	"coins": 11,
-	"isRandomParameter": true
+    "score": 999,
+    "coins": 11,
+    "isRandomParameter": true
 });
 ~~~
+
+
+If you assign unique ids to your users you can send that on to flurry
+so it can keep track of users in the same way you are:
+
+~~~
+flurry.setUserId(userId);
+~~~
+
 
 ## Testing
 
 To test for successful integration, build your game:
 
 ~~~
-basil debug native-android --clean --open
+devkit debug native-android --clean --open
 ~~~
 
 Then watch logcat:
