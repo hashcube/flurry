@@ -57,10 +57,10 @@ public class FlurryPlugin implements IPlugin {
                 boolean debug = meta.getBoolean("WEEBY_DEBUG", true);
 
                 if (debug) {
-					FlurryAgent.setLogEnabled(true);
-					FlurryAgent.setLogEvents(true);
-					FlurryAgent.setLogLevel(Log.VERBOSE);
-				}
+                  FlurryAgent.setLogEnabled(true);
+                  FlurryAgent.setLogEvents(true);
+                  FlurryAgent.setLogLevel(Log.VERBOSE);
+                }
 
                 flurryKey = meta.getString("FLURRY_KEY");
             }
@@ -76,7 +76,7 @@ public class FlurryPlugin implements IPlugin {
             JSONObject obj = new JSONObject(json);
             String user = obj.getString("user");
 
-			FlurryAgent.setUserId(user);
+            FlurryAgent.setUserId(user);
 
             logger.log("{flurry} setUser - success: " + user);
         } catch (JSONException e) {
