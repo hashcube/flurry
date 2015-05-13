@@ -1,0 +1,10 @@
+<!--START_PLUGINS_MANIFEST-->
+<!-- Flurry -->
+<uses-permission android:name="android.permission.INTERNET"/>
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+<!--END_PLUGINS_MANIFEST-->
+<!--START_PLUGINS_APPLICATION-->
+<!-- Flurry -->
+<meta-data android:name="flurryAPIKey" android:value=""/>
+<!-- END_PLUGINS_APPLICATION-->

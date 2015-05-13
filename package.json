@@ -1,0 +1,12 @@
+{
+  "name": "flurry",
+  "version": "5.5.0",
+  "devkit": {
+    "clientPaths": {
+      "flurry": "js"
+    },
+    "extensions": {
+      "android": "android"
+    }
+  }
+}
