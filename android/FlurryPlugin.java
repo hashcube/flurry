@@ -30,18 +30,32 @@ import com.flurry.android.FlurryAgent;
 
 public class FlurryPlugin implements IPlugin {
     Activity activity;
+    String flurryAppKey = "";
 
     public FlurryPlugin() {
 
     }
 
-    public void onCreateApplication(Context applicationContext) {
-
+    private void initFlurry(Context context) {
+	FlurryAgent.setLogEnabled(true);
+	FlurryAgent.setLogEvents(true);
+	FlurryAgent.setLogLevel(Log.VERBOSE);
+	FlurryAgent.init(context, flurryAppKey);
     }
+
+    public void onCreateApplication(Context applicationContext) {
+	try{
+		PackageManager manager = applicationContext.getPackageManager();
+		Bundle meta = manager.getApplicationInfo(applicationContext.getPackageName(), PackageManager.GET_META_DATA).metaData;
+		flurryAppKey = meta.getString("FLURRY_KEY");
+		initFlurry(applicationContext);
+	} catch (Exception e) {
+		logger.log("{flurry} setUser - failure: " + e.getMessage());
+	}
+   }
 
     public void onCreate(Activity activity, Bundle savedInstanceState) {
         this.activity = activity;
-
     }
 
     public void onResume() {
@@ -49,26 +63,7 @@ public class FlurryPlugin implements IPlugin {
     }
 
     public void onStart() {
-        PackageManager manager = activity.getPackageManager();
-        String flurryKey = "";
-        try {
-            Bundle meta = manager.getApplicationInfo(activity.getPackageName(), PackageManager.GET_META_DATA).metaData;
-            if (meta != null) {
-                boolean debug = meta.getBoolean("WEEBY_DEBUG", true);
-
-                if (debug) {
-                  FlurryAgent.setLogEnabled(true);
-                  FlurryAgent.setLogEvents(true);
-                  FlurryAgent.setLogLevel(Log.VERBOSE);
-                }
-
-                flurryKey = meta.getString("FLURRY_KEY");
-            }
-        } catch (Exception e) {
-            android.util.Log.d("EXCEPTION", "" + e.getMessage());
-        }
-
-        FlurryAgent.onStartSession(activity, flurryKey);
+	FlurryAgent.onStartSession(activity);
     }
 
     public void setUser(String json) {
