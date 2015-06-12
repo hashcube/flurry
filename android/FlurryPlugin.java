@@ -31,15 +31,19 @@ import com.flurry.android.FlurryAgent;
 public class FlurryPlugin implements IPlugin {
     Activity activity;
     String flurryAppKey = "";
+    boolean debug = false;
 
     public FlurryPlugin() {
 
     }
 
     private void initFlurry(Context context) {
-	FlurryAgent.setLogEnabled(true);
-	FlurryAgent.setLogEvents(true);
-	FlurryAgent.setLogLevel(Log.VERBOSE);
+        if (debug) {
+		FlurryAgent.setLogEnabled(true);
+		FlurryAgent.setLogEvents(true);
+		FlurryAgent.setLogLevel(Log.VERBOSE);
+        }
+
 	FlurryAgent.init(context, flurryAppKey);
     }
 
@@ -48,6 +52,7 @@ public class FlurryPlugin implements IPlugin {
 		PackageManager manager = applicationContext.getPackageManager();
 		Bundle meta = manager.getApplicationInfo(applicationContext.getPackageName(), PackageManager.GET_META_DATA).metaData;
 		flurryAppKey = meta.getString("FLURRY_KEY");
+		debug = meta.getBoolean("WEEBY_DEBUG", true);
 		initFlurry(applicationContext);
 	} catch (Exception e) {
 		logger.log("{flurry} setUser - failure: " + e.getMessage());
