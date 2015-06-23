@@ -1,4 +1,5 @@
-var hasNativeEvents = NATIVE && NATIVE.plugins && NATIVE.plugins.sendEvent;
+var hasNativeEvents = NATIVE && NATIVE.plugins && NATIVE.plugins.sendEvent,
+  DEBUG = false;
 
 var Flurry = Class(function () {
 	this.init = function () {
