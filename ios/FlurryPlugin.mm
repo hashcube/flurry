@@ -11,11 +11,7 @@
 
 // The plugin must call super init.
 - (id) init {
-	self = [super init];
-	if (!self) {
-		return nil;
-	}
-
+	if (self = [super init]) {}
 	return self;
 }
 
@@ -28,8 +24,7 @@
 		[Flurry startSession:flurryKey];
 
 		NSLOG(@"{flurry} Initialized with manifest flurryKey: '%@'", flurryKey);
-	}
-	@catch (NSException *exception) {
+	} @catch (NSException *exception) {
 		NSLOG(@"{flurry} Failure to get ios:flurryKey from manifest file: %@", exception);
 	}
 }
@@ -41,8 +36,7 @@
 		[Flurry setUserID:userId];
 
 		NSLOG(@"{flurry} Set user id: %@", userId);
-	}
-	@catch (NSException *exception) {
+	} @catch (NSException *exception) {
 		NSLOG(@"{flurry} Exception while processing setUser:", exception);
 	}
 }
@@ -50,8 +44,8 @@
 - (void) track:(NSDictionary *)jsonObject {
 	@try {
 		NSString *eventName = [jsonObject valueForKey:@"eventName"];
-		
 		NSDictionary *evtParams = [jsonObject objectForKey:@"params"];
+
 		if (!evtParams || [evtParams count] <= 0) {
 			[Flurry logEvent:eventName];
 
@@ -61,8 +55,7 @@
 
 			NSLOG(@"{flurry} Delivered event '%@' with %d params", eventName, (int)[evtParams count]);
 		}
-	}
-	@catch (NSException *exception) {
+	} @catch (NSException *exception) {
 		NSLOG(@"{flurry} Exception while processing event: ", exception);
 	}
 }
