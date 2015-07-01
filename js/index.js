@@ -1,5 +1,4 @@
-var hasNativeEvents = NATIVE && NATIVE.plugins && NATIVE.plugins.sendEvent,
-  DEBUG = false;
+var DEBUG = false;
 
 var Flurry = Class(function () {
 	this.init = function () {
@@ -19,12 +18,10 @@ var Flurry = Class(function () {
 			logger.log("track: ", name, JSON.stringify(data));
 		}
 
-		if (hasNativeEvents) {
-			NATIVE.plugins.sendEvent("FlurryPlugin", "track", JSON.stringify({
-					eventName: name,
-					params: data
-				}));
-		}
+		NATIVE.plugins.sendEvent("FlurryPlugin", "track", JSON.stringify({
+				eventName: name,
+				params: data
+			}));
 	};
 
 	this.setUserId = function (userId) {
@@ -32,11 +29,9 @@ var Flurry = Class(function () {
 			logger.log("setUserId: ", userId);
 		}
 
-		if (hasNativeEvents) {
-			NATIVE.plugins.sendEvent("FlurryPlugin", "setUser", JSON.stringify({
-					user: userId
-				}));
-		}
+		NATIVE.plugins.sendEvent("FlurryPlugin", "setUser", JSON.stringify({
+				user: userId
+			}));
 	};
 
 	this.setGlobalProperty = function (key, value) {
