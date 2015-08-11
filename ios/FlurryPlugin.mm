@@ -31,7 +31,7 @@
 
 - (void) setUser:(NSDictionary *)jsonObject {
 	@try {
-		NSString *userId = [jsonObject valueForKey:@"user"];
+		NSString *userId = (NSString*)[jsonObject valueForKey:@"user"];
 
 		[Flurry setUserID:userId];
 
