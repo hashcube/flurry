@@ -5,7 +5,7 @@
 		"FlurryPlugin.mm"
 	],
 	"frameworks": [
-		"libFlurry_6.4.0.a",
+		"libFlurry_6.7.0.a",
 		"Security"
 	]
 }
