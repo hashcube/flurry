@@ -21,6 +21,7 @@
 		NSString *flurryKey = [ios valueForKey:@"flurryKey"];
 
 		//[Flurry setDebugLogEnabled:YES];
+		[Flurry setCrashReportingEnabled: YES];
 		[Flurry startSession:flurryKey];
 
 		NSLOG(@"{flurry} Initialized with manifest flurryKey: '%@'", flurryKey);
