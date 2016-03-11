@@ -71,6 +71,15 @@ public class FlurryPlugin implements IPlugin {
 	FlurryAgent.onStartSession(activity);
     }
 
+    public void onFirstRun() {
+    }
+
+    public void onRenderPause() {
+    }
+
+    public void onRenderResume() {
+    } 
+
     public void setUser(String json) {
         try {
             JSONObject obj = new JSONObject(json);
