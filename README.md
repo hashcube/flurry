@@ -1,10 +1,13 @@
 # Game Closure DevKit Plugin: Flurry
 
 ## Installation
-Install the module using the standard devkit install process:
+
+Add devkit to depencies section of the manifest.
 
 ~~~
-devkit install https://github.com/gameclosure/flurry#v2.0.1
+"dependencies": {
+    "flurry": "https://github.com/hashcube/flurry.git#master"
+}
 ~~~
 
 ## Setup
