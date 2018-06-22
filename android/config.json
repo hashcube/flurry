@@ -4,5 +4,5 @@
     ],
     "injectionXML": "manifest.xml",
 	"injectionXSL": "manifest.xsl",
-	"injectionGradleXML": "gradle.xml"
+	 "injectionTealeafModuleGradleXML": "gradletealeaf.xml"
 }
