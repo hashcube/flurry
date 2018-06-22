@@ -1,4 +1,4 @@
-<!--START_PLUGINS_DEPENDENCIES-->
+//<!--START_PLUGINS_DEPENDENCIES-->
 	//<!--Flurry-->
 implementation 'com.flurry.android:analytics:11.0.0@aar'
-<!--END_PLUGINS_DEPENDENCIES-->
+//<!--END_PLUGINS_DEPENDENCIES-->
