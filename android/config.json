@@ -1,8 +1,8 @@
 {
-    "copyFiles": [
+	"copyFiles": [
         "FlurryPlugin.java"
     ],
-    "injectionXML": "manifest.xml",
+	"injectionXML": "manifest.xml",
 	"injectionXSL": "manifest.xsl",
-	 "injectionTealeafModuleGradleXML": "gradletealeaf.xml"
+	"injectionTealeafModuleGradleXML": "gradletealeaf.xml"
 }

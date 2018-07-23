@@ -44,19 +44,11 @@ public class FlurryPlugin implements IPlugin {
 
     private void initFlurry(Context context, String flurryAppKey) {
         FlurryAgent.Builder fab = new FlurryAgent.Builder()
-                .withLogEnabled(true)
-                .withListener(new FlurryAgentListener() {
-                    @Override
-                    public void onSessionStarted() {
-                        Log.d(TAG,"FlurryAgent session started.");
-                    }
-                })
-                .withCaptureUncaughtExceptions(true)
-                .withContinueSessionMillis(10000)
-                .withLogLevel(VERBOSE);
+                .withContinueSessionMillis(10000);
 
         if (debug) {
             fab.withLogEnabled(true);
+            fab.withLogLevel(VERBOSE);
         }
 
         fab.build(context, flurryAppKey);
