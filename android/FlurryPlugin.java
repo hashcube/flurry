@@ -3,6 +3,8 @@ package com.tealeaf.plugin.plugins;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
+
+import com.flurry.android.FlurryAgentListener;
 import com.tealeaf.logger;
 import com.tealeaf.TeaLeaf;
 import com.tealeaf.plugin.IPlugin;
@@ -27,24 +29,29 @@ import java.util.Iterator;
 
 import com.flurry.android.FlurryAgent;
 
+import static android.util.Log.VERBOSE;
+
 
 public class FlurryPlugin implements IPlugin {
     Activity activity;
     String flurryAppKey = "";
     boolean debug = false;
+    String TAG = "FlurryPlugin";
 
     public FlurryPlugin() {
 
     }
 
-    private void initFlurry(Context context) {
+    private void initFlurry(Context context, String flurryAppKey) {
+        FlurryAgent.Builder fab = new FlurryAgent.Builder()
+                .withContinueSessionMillis(10000);
+
         if (debug) {
-		FlurryAgent.setLogEnabled(true);
-		FlurryAgent.setLogEvents(true);
-		FlurryAgent.setLogLevel(Log.VERBOSE);
+            fab.withLogEnabled(true);
+            fab.withLogLevel(VERBOSE);
         }
 
-	FlurryAgent.init(context, flurryAppKey);
+        fab.build(context, flurryAppKey);
     }
 
     public void onCreateApplication(Context applicationContext) {
@@ -53,7 +60,7 @@ public class FlurryPlugin implements IPlugin {
 		Bundle meta = manager.getApplicationInfo(applicationContext.getPackageName(), PackageManager.GET_META_DATA).metaData;
 		flurryAppKey = meta.getString("FLURRY_KEY");
 		debug = meta.getBoolean("WEEBY_DEBUG", true);
-		initFlurry(applicationContext);
+		initFlurry(applicationContext, flurryAppKey);
 	} catch (Exception e) {
 		logger.log("{flurry} setUser - failure: " + e.getMessage());
 	}
